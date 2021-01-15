@@ -1,0 +1,26 @@
+<h1>Results</h1>
+<p><%= #render plain: params.inspect 
+%></p>
+<table> 
+	<tr>
+	<th>Title</th> 
+	<th>Author</th> 
+	<th>ISBN</th> 
+	<!-- <th>Copies</th> -->
+	<th>Review Book</th>
+	<th></th>
+	</tr>
+	<% @results.each do |book| %> 
+	<tr>
+	<td><%= book.title %></td> 
+	<td><%= book.author %></td> 
+	<td><%= book.isbn %></td> 
+	<!-- <td><%= book.copies %></td> -->
+	<td><%= link_to 'Add Review', new_book_review_path(book, :search_type_t => @search_type_t, :search_type_i => @search_type_i, :search_type_a => @search_type_a, :search => @search)  %>
+	</td>
+	<td><%= link_to 'See Reviews', book_reviews_path(book, :search_type_t => @search_type_t, :search_type_i => @search_type_i, :search_type_a => @search_type_a, :search => @search) %>
+	</td>
+	</tr>
+	<% end %> 
+	</table>
+	<p><%= link_to 'Back to Search', search_patron_search_path %></p>

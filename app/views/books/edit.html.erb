@@ -1,0 +1,58 @@
+<h1>Edit Book</h1>
+<%= form_with scope: :book, url: books_path, local: true do |form| %>
+<% if @book.errors.any? %>
+<div id="error_explanation"> <h2>
+	error(s) prohibited this book from being saved: </h2>
+	<ul>
+	<% @book.errors.full_messages.each do |msg| %> <li><%= msg %></li>
+	<% end %> 
+	</ul>
+	</div>
+<% end %>
+<% end %>
+<%= form_with model: @book, local: true do |form| %>
+	<p>
+	<%= form.label :title %><br>
+	<%= form.text_field :title %> 
+	</p>
+	<p>
+	<%= form.label :author %><br>
+	<%= form.text_field :author %>
+	</p>
+	<p>
+		<%= form.label :isbn %><br>
+		<%= form.text_field :isbn %>
+	</p>
+	<p>
+		<%= form.label :copies %><br>
+		<%= form.text_field :copies %>
+		</p>
+	<p>
+		<p style="display:none;">
+			<%= form.label :search %><br>
+			<%= form.text_field :search, value: @search %>
+			</p>
+		<p>
+	<p>
+		<p style="display:none;">
+			<%= form.label :search_type_title %><br>
+			<%= form.text_field :search_type_t, value: @search_type_t %>
+		</p>
+	<p>
+	<p>
+		<p style="display:none;">
+			<%= form.label :search_type_author %><br>
+			<%= form.text_field :search_type_a, value: @search_type_a %>
+		</p>
+	<p>
+	<p>
+		<p style="display:none;">
+			<%= form.label :search_type_isbn %><br>
+			<%= form.text_field :search_type_i, value: @search_type_i %>
+		</p>
+	<p>
+	
+	<%= form.submit %>
+	</p>
+<% end %>
+<%= link_to 'Back', search_res_results_path(:search_type_t => @search_type_t, :search_type_i => @search_type_i, :search_type_a => @search_type_a, :search => @search) %>

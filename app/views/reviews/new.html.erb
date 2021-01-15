@@ -1,0 +1,35 @@
+<h1>New Review for <%= Book.find(params[:book_id]).title %></h1>
+
+<%= form_with scope: :review, url: book_reviews_path, local: true do |form| %> <p>
+	<%= form.label :reviewer %><br>
+	<%= form.text_field :reviewer %> </p>
+	<p>
+	<%= form.label :body %><br>
+	<%= form.text_field :body %>
+	</p>
+	<p style="display:none;">
+		<%= form.label :search %><br>
+		<%= form.text_field :search, value: @search %>
+	</p>
+	<p>
+		<p style="display:none;">
+			<%= form.label :search_type_title %><br>
+			<%= form.text_field :search_type_t, value: @search_type_t %>
+		</p>
+	<p>
+	<p>
+		<p style="display:none;">
+			<%= form.label :search_type_author %><br>
+			<%= form.text_field :search_type_a, value: @search_type_a %>
+		</p>
+	<p>
+	<p>
+		<p style="display:none;">
+			<%= form.label :search_type_isbn %><br>
+			<%= form.text_field :search_type_i, value: @search_type_i %>
+		</p>
+	<p>
+	<%= form.submit %>
+	</p>
+	<% end %>
+<p><%= link_to 'Back to Results', search_patron_results_path(:search_type_t => @search_type_t, :search_type_i => @search_type_i, :search_type_a => @search_type_a, :search => @search) %></p>

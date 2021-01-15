@@ -1,0 +1,16 @@
+<h3>Book Reviews for <%= Book.find(params[:book_id]).title %> </h3> 
+<p>by <%= Book.find(params[:book_id]).author %> (<%= Book.find(params[:book_id]).isbn %>) </p>
+<table> 
+<tr>
+<th>Name</th> 
+<th>Reviews</th> 
+</tr>
+<% @reviews.each do |review| %> 
+<tr>
+<td><%= review.reviewer %></td> 
+<td><%= review.body %></td> 
+</tr>
+<% end %> 
+</table>
+<p><%= link_to 'Back to Results', search_patron_results_path(:search_type_t => @search_type_t, :search_type_i => @search_type_i, :search_type_a => @search_type_a, :search => @search) %></p>
+

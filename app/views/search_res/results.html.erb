@@ -1,0 +1,30 @@
+<h1>Results</h1>
+<p><%= #render plain: params.inspect 
+%></p>
+<table> 
+	<tr>
+	<th>Title</th> 
+	<th>Author</th> 
+	<th>ISBN</th> 
+	<!-- <th>Copies</th> -->
+	<th></th>
+	<th></th>
+	</tr>
+	<% @results.each do |book| %> 
+	<tr>
+	<td><%= book.title %></td> 
+	<td><%= book.author %></td> 
+	<td><%= book.isbn %></td> 
+	<!-- <td><%= book.copies %></td> -->
+	<td><%= link_to 'Edit', "../books/#{book.id}/edit?search=#{@search}&search_type_t=#{@search_type_t}&search_type_a=#{@search_type_a}&search_type_i=#{@search_type_i}&id=#{book.id}" %>
+	</td>
+	<% if book.copies > 0 %>
+	<td><%= link_to 'Check Out', "./checkout/?search=#{@search}&search_type_t=#{@search_type_t}&search_type_a=#{@search_type_a}&search_type_i=#{@search_type_i}&id=#{book.id}" %>
+	</td>
+	<% end %> 
+	</tr>
+	<% end %> 
+	</table>
+	<p><%= link_to 'Back to Search', search_res_search_path %></p>
+	<p><%= #render plain: params.inspect 
+	%></p>

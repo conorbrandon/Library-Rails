@@ -1,0 +1,19 @@
+<h1>Search</h1>
+<%= form_with url: search_patron_results_path, local: true, method: :get do |form| %> 
+	<p>
+	<%= form.label :search %><br>
+	<%= form.text_field :search %> for
+	<%= form.check_box :search_type_t %> 
+	<%= form.label :search_type_title, 'Title' %>
+	<%= form.check_box :search_type_a %> 
+	<%= form.label :search_type_author, 'Author' %>
+	<%= form.check_box :search_type_i %> 
+	<%= form.label :search_type_isbn, 'ISBN' %>
+	</p>
+	<p>
+	<%= form.submit 'search'%>
+	</p>
+<% end %>
+<p><%= link_to 'Home', root_path %></p>
+
+
